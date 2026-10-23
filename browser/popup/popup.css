@@ -1,0 +1,244 @@
+/*
+ * PinFlow popup styles.
+ * Small, dark-mode aware and keyboard friendly (PRD 24, 25, 33).
+ */
+
+:root {
+  color-scheme: light dark;
+
+  --bg: #ffffff;
+  --fg: #14161a;
+  --muted: #5b6472;
+  --line: #e4e7ec;
+  --raised: #f6f7f9;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-fg: #ffffff;
+  --tone-empty: #8a93a0;
+  --tone-ready: #2e7d32;
+  --tone-pinned: #0b6bcb;
+  --tone-warn: #b26a00;
+  --tone-error: #c62828;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16181d;
+    --fg: #f2f4f7;
+    --muted: #a3acba;
+    --line: #2b2f38;
+    --raised: #1e2128;
+    --accent: #7c74f2;
+    --accent-hover: #8f88f5;
+    --accent-fg: #12131a;
+    --tone-empty: #9aa3b0;
+    --tone-ready: #6bc57a;
+    --tone-pinned: #57a8f5;
+    --tone-warn: #e0a341;
+    --tone-error: #ef7b7b;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 300px;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+body[data-tone="empty"] {
+  --tone: var(--tone-empty);
+}
+body[data-tone="ready"] {
+  --tone: var(--tone-ready);
+}
+body[data-tone="pinned"] {
+  --tone: var(--tone-pinned);
+}
+body[data-tone="warn"] {
+  --tone: var(--tone-warn);
+}
+body[data-tone="error"] {
+  --tone: var(--tone-error);
+}
+body[data-tone="idle"] {
+  --tone: var(--tone-empty);
+}
+
+.panel {
+  padding: 16px;
+}
+
+.brand {
+  text-align: center;
+}
+
+.brand__mark {
+  display: block;
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 8px;
+  border-radius: 8px;
+  background: linear-gradient(160deg, #4f46e5 0%, #7c3aed 100%);
+  position: relative;
+}
+
+.brand__mark::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 26%;
+  width: 15px;
+  height: 15px;
+  margin-left: -7.5px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.brand__mark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 4px;
+  height: 9px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: #fff;
+}
+
+.brand__name {
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.brand__tagline {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.status {
+  margin: 14px 0 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--raised);
+}
+
+.status__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.status__dot {
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--tone);
+}
+
+.status__title {
+  font-weight: 600;
+}
+
+.status__detail {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.status__detail[hidden] {
+  display: none;
+}
+
+.action {
+  display: block;
+  width: 100%;
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--accent-fg);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.action[hidden] {
+  display: none;
+}
+
+.action:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.action:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.action:focus-visible,
+.panel a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.meta {
+  margin: 14px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.meta__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.meta__label {
+  color: var(--muted);
+}
+
+.meta__key {
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--raised);
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.meta__note {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+body[data-busy="true"] .action {
+  cursor: progress;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .action {
+    transition: background-color 120ms ease-in-out;
+  }
+}

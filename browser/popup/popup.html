@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PinFlow</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body data-tone="idle" data-busy="false">
+    <main class="panel" aria-labelledby="pinflow-title">
+      <header class="brand">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <h1 class="brand__name" id="pinflow-title">PINFLOW</h1>
+        <p class="brand__tagline">Keep it visible.</p>
+      </header>
+
+      <section class="status" aria-live="polite">
+        <p class="status__row">
+          <span class="status__dot" aria-hidden="true"></span>
+          <span class="status__title" id="status-title">Checking for a video&hellip;</span>
+        </p>
+        <p class="status__detail" id="status-detail"></p>
+      </section>
+
+      <button type="button" class="action" id="action" hidden>Pin Video</button>
+
+      <footer class="meta">
+        <p class="meta__row">
+          <span class="meta__label">Shortcut:</span>
+          <kbd class="meta__key" id="shortcut">Not set</kbd>
+        </p>
+        <p class="meta__note">Works locally. Nothing leaves your browser.</p>
+      </footer>
+    </main>
+
+    <script src="../shared/logic.js"></script>
+    <script src="../shared/api.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

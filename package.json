@@ -1,0 +1,13 @@
+{
+  "name": "pinflow",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PinFlow \u2014 keep a tutorial video visible in Picture-in-Picture while you work in other tabs. Brave-first Manifest V3 extension.",
+  "keywords": ["brave", "chrome-extension", "manifest-v3", "picture-in-picture"],
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.mjs\"",
+    "icons": "node tools/generate-icons.mjs",
+    "build": "npm run icons && npm test"
+  }
+}
